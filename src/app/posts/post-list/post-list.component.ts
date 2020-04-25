@@ -10,11 +10,6 @@ import { PostsService } from '../posts.service';
   styleUrls: ['./post-list.component.css'],
 })
 export class PostListComponent implements OnInit, OnDestroy{
-  // posts = [
-  //   { title: '1 Post', content: 'This is 1 pos\'t content'},
-  //   { title: '2 Post', content: 'This is 2 pos\'t content'},
-  //   { title: '3 Post', content: 'This is 3 pos\'t content'},
-  // ];
 
   @Input() posts: Post[] = [];
   private  postsSub: Subscription;
