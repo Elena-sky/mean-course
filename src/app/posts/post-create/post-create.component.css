@@ -2,3 +2,7 @@ mat-form-field,
 texterea {
   width: 100%;
 }
+
+mat-spinner {
+  margin: auto;
+}
