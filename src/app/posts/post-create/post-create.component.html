@@ -1,6 +1,6 @@
 <mat-card>
   <mat-spinner *ngIf="isLoading"></mat-spinner>
-  <form [formGroup]="form" (submit)="onSavePost()" #postForm="ngForm">
+  <form [formGroup]="form" (submit)="onSavePost()">
     <mat-form-field>
       <input
         matInput
@@ -12,7 +12,7 @@
     </mat-form-field>
     <div>
       <button mat-button type="button" (click)="filePicker.click()">Pick Image</button>
-      <input type="file" #filePicker>
+      <input type="file" #filePicker (change)="onImagePicked($event)">
     </div>
     <mat-form-field>
       <textarea
