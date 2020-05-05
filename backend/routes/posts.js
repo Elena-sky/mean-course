@@ -13,12 +13,6 @@ const MIME_TYPE_MAP = {
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     const isValid = MIME_TYPE_MAP[file.mimetype];
-    console.log(file);
-    console.log( MIME_TYPE_MAP);
-
-    console.log( MIME_TYPE_MAP[file.mimetype]);
-    console.log( file.mimetype);
-
     let error = new Error("Invalid mime type");
     if (isValid) {
       error = null;
@@ -81,9 +75,11 @@ router.get("",(req, res, next) => {
       .skip(pageSize * (currentPage - 1))
       .limit(pageSize);
   }
-  postQuery.then(documents => {
-      return Post.count();
-    })
+  postQuery
+    .then(documents => {
+    fetchedPosts = documents;
+    return Post.count();
+  })
     .then(count => {
       res.status(200).json({
         message: 'Posts fetched successfully!',
