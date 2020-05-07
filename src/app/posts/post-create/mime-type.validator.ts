@@ -45,3 +45,4 @@ export const mimeType = (
   );
   return frObs;
 };
+// Sending the Token to the Frontend
