@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
+  private isAuthenticated = false;
   private token: string;
   private authStatusListener = new Subject<boolean>();
 
@@ -12,6 +13,10 @@ export class AuthService {
 
   getToken() {
     return this.token;
+  }
+
+  getIsAuth() {
+    return this.isAuthenticated;
   }
 
   getAuthStatusListener() {
@@ -31,9 +36,11 @@ export class AuthService {
     const authData: AuthData = {email, password};
     this.http.post<{token: string}>('http://localhost:3000/api/user/login', authData)
       .subscribe(response => {
-        const token = response.token;
-        this.token = token;
-        this.authStatusListener.next(true);
+        this.token = response.token;
+        if (this.token) {
+          this.isAuthenticated = true;
+          this.authStatusListener.next(true);
+        }
       });
   }
 }
